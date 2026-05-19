@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Varshitha Gogineni — Portfolio
 
-## Getting Started
+Personal portfolio site for an AI & Data Engineer. Built with Next.js 15, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+The contact form on the site collects first name, last name, email, and an optional message, and forwards each submission to **varshithagogineni007@gmail.com** via [Web3Forms](https://web3forms.com).
+
+## Quick start
 
 ```bash
+npm install
+cp .env.example .env.local
+# edit .env.local and paste your Web3Forms access key
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Set up the contact form (one-time)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The form posts directly from the browser to Web3Forms — they call this a "public access key," which is by design on the free tier.
 
-## Learn More
+1. Visit https://web3forms.com.
+2. Enter `varshithagogineni007@gmail.com` and click **Create Access Key**.
+3. Web3Forms emails you the access key.
+4. Paste it into `.env.local` (prefixed with `NEXT_PUBLIC_` so the browser bundle can read it):
+   ```
+   NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   ```
+5. Restart `npm run dev` so the env var is picked up.
+6. Submit the contact form once with a test message — it should arrive in your Gmail within seconds.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push this repo to GitHub.
+2. Go to https://vercel.com/new and import the repo.
+3. In **Environment Variables**, add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` with your key.
+4. Click Deploy. Future pushes auto-deploy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Edit the content
 
-## Deploy on Vercel
+- Hero text: `components/Hero.tsx`
+- About blurb: `components/About.tsx`
+- Experience entries: `components/Experience.tsx`
+- Projects: `components/Projects.tsx`
+- Skills: `components/Skills.tsx`
+- Achievements & certifications: `components/Achievements.tsx`
+- Contact form copy: `components/Contact.tsx`
+- Resume PDF: replace `public/resume.pdf`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 15 (App Router) + TypeScript
+- Tailwind CSS v4
+- Framer Motion (animations)
+- lucide-react (icons)
+- Web3Forms (email delivery — no backend hosting needed)
