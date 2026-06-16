@@ -36,7 +36,7 @@ export default function Footer() {
             <span className="text-xs">LinkedIn</span>
           </a>
           <a
-            href="https://github.com/"
+            href="https://github.com/Varshithagogineni"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"

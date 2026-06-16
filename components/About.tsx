@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Section from "./Section";
 import { Download, FileText, GraduationCap, MapPin, Trophy } from "lucide-react";
 
 export default function About() {
   return (
     <Section id="about" eyebrow="01 / about" title="A bit about me">
-      <div className="grid md:grid-cols-3 gap-8">
+      {/* Top: intro paragraphs (left) + portrait (right) */}
+      <div className="grid md:grid-cols-3 gap-8 items-start">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,45 +57,66 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-col gap-4"
+          className="relative rounded-2xl p-[1.5px] bg-gradient-to-br from-cyan-400/50 to-violet-400/50 self-start"
         >
-          <InfoCard
-            icon={<GraduationCap size={18} className="text-cyan-300" />}
-            title="MS, Information Science"
-            subtitle="University of North Texas · Class of 2026"
-            meta="GPA 4.00 / 4.00"
-          />
-          <InfoCard
-            icon={<Trophy size={18} className="text-violet-300" />}
-            title="Dallas AI 2025"
-            subtitle="Top 14 of 32 teams"
-            meta="VoiceFit"
-          />
-          <InfoCard
-            icon={<MapPin size={18} className="text-cyan-300" />}
-            title="Denton, TX"
-            subtitle="Open to AI / Data Engineering roles"
-          />
-
-          <a
-            href="/resume.pdf"
-            download="Varshitha_Gogineni_Resume.pdf"
-            className="group relative rounded-xl border border-cyan-400/30 bg-gradient-to-br from-cyan-400/10 to-violet-400/10 p-4 hover:border-cyan-400/60 transition-colors"
-          >
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <FileText size={18} className="text-cyan-300" />
-              <span>Download my résumé</span>
-              <Download
-                size={14}
-                className="ml-auto text-zinc-400 group-hover:text-cyan-300 group-hover:translate-y-0.5 transition-all"
-              />
-            </div>
-            <p className="mt-1 text-xs text-zinc-400">
-              PDF · AI &amp; Data Engineer · updated 2026
-            </p>
-          </a>
+          <div className="overflow-hidden rounded-[15px] bg-[#0a0a0f]">
+            <Image
+              src="/varshitha-grad.jpg"
+              alt="Varshitha Gogineni at her University of North Texas graduation"
+              width={1050}
+              height={1400}
+              priority
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </motion.div>
       </div>
+
+      {/* Bottom: quick facts in a clean row + résumé */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+        <InfoCard
+          icon={<GraduationCap size={18} className="text-cyan-300" />}
+          title="MS, Information Science"
+          subtitle="University of North Texas · Class of 2026"
+          meta="GPA 4.00 / 4.00"
+        />
+        <InfoCard
+          icon={<Trophy size={18} className="text-violet-300" />}
+          title="Dallas AI 2025"
+          subtitle="Top 14 of 32 teams"
+          meta="VoiceFit"
+        />
+        <InfoCard
+          icon={<MapPin size={18} className="text-cyan-300" />}
+          title="Denton, TX"
+          subtitle="Open to AI / Data Engineering roles"
+        />
+
+        <a
+          href="/resume.pdf"
+          download="Varshitha_Gogineni_Resume.pdf"
+          className="group relative rounded-xl border border-cyan-400/30 bg-gradient-to-br from-cyan-400/10 to-violet-400/10 p-4 hover:border-cyan-400/60 transition-colors"
+        >
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <FileText size={18} className="text-cyan-300" />
+            <span>Download my résumé</span>
+            <Download
+              size={14}
+              className="ml-auto text-zinc-400 group-hover:text-cyan-300 group-hover:translate-y-0.5 transition-all"
+            />
+          </div>
+          <p className="mt-1 text-xs text-zinc-400">
+            PDF · AI Engineer · updated 2026
+          </p>
+        </a>
+      </motion.div>
     </Section>
   );
 }
@@ -116,9 +139,7 @@ function InfoCard({
         <span>{title}</span>
       </div>
       <p className="mt-1 text-sm text-zinc-400">{subtitle}</p>
-      {meta && (
-        <p className="mt-1 font-mono text-xs text-zinc-500">{meta}</p>
-      )}
+      {meta && <p className="mt-1 font-mono text-xs text-zinc-500">{meta}</p>}
     </div>
   );
 }
