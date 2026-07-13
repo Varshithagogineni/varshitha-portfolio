@@ -95,7 +95,7 @@ export default function About() {
         />
         <InfoCard
           icon={<MapPin size={18} className="text-cyan-300" />}
-          title="Denton, TX"
+          title="Dallas, TX"
           subtitle="Open to AI / Data Engineering roles"
         />
 

@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ delay: 1, duration: 0.6 }}
           className="mt-16 flex items-center gap-6 text-xs font-mono text-zinc-500"
         >
-          <span>📍 Denton, TX</span>
+          <span>📍 Dallas, TX</span>
           <span>·</span>
           <a
             href="mailto:varshithagogineni007@gmail.com"

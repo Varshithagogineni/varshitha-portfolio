@@ -12,9 +12,25 @@ type Project = {
   stack: string[];
   metric: string;
   link?: string;
+  github?: string;
 };
 
 const aiProjects: Project[] = [
+  {
+    name: "RoleReady — AI Job-Application Copilot",
+    tag: "AI Copilot · LangChain + Tavily",
+    description:
+      "Full-stack AI copilot for international students — paste a job link and upload a resume to get a one-page prep sheet: live company intel with cited sources, visa-sponsorship signals (H-1B/OPT/STEM OPT) with evidence and confidence, real interview questions, networking contacts, a fit score, an AI-tailored resume, and “Ray”, a chatbot grounded in all of that research.",
+    bullets: [
+      "Cut LLM usage from ~10 to 2 calls per prep — running entirely within free tiers — via a semantic router that offloads factual queries to Tavily (zero LLM calls), a global semaphore with per-key rate limiting, 429/503-aware retries, and response caching.",
+      "Architected a multi-provider AI pipeline: LangChain orchestration with structured Pydantic outputs from Gemini, plus Tavily running parallel, source-cited live web research so every fact in the app links to evidence.",
+      "Shipped end-to-end to production with Google OAuth + Supabase Postgres for accounts and saved application history — React/Vite frontend on Vercel, FastAPI backend on Render, CI via GitHub auto-deploys.",
+    ],
+    stack: ["LangChain", "Gemini", "Tavily", "FastAPI", "React", "Supabase"],
+    metric: "live · ~10 → 2 LLM calls per prep",
+    link: "https://roleready-fawn.vercel.app",
+    github: "https://github.com/Varshithagogineni/roleready",
+  },
   {
     name: "Self-Healing Browser Automation Agent",
     tag: "Agentic AI · Playwright MCP",
@@ -26,7 +42,7 @@ const aiProjects: Project[] = [
       "Designed a modular TypeScript architecture (agent loop, MCP client, per-carrier mapping, CLI) with token/cost tracking — adding a new carrier requires only a single new file.",
     ],
     stack: ["Playwright MCP", "OpenAI", "TypeScript", "Node.js", "Agentic AI"],
-    metric: "$539 live quote · ~10x cheaper",
+    metric: "live validated · 0 errors",
   },
   {
     name: "CMHT Voice Agent",
@@ -50,8 +66,7 @@ const aiProjects: Project[] = [
       "Designed automated task workflows in n8n reducing manual interaction steps by 60%+.",
     ],
     stack: ["Whisper STT", "React", "n8n", "OpenAI", "Supabase"],
-    metric: "live demo",
-    link: "https://voicefit.vercel.app",
+    metric: "hands-free voice AI",
   },
 ];
 
@@ -85,7 +100,7 @@ const dataProjects: Project[] = [
 
 export default function Projects() {
   return (
-    <Section id="projects" eyebrow="03 / projects" title="Selected work">
+    <Section id="projects" eyebrow="03 / projects">
       <div className="space-y-14">
         <ProjectGroup label="AI Engineering" projects={aiProjects} />
         <ProjectGroup label="Data Engineering" projects={dataProjects} />
@@ -180,16 +195,28 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
 
       <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
         <span className="font-mono text-xs text-zinc-500">{p.metric}</span>
-        {p.link && (
-          <a
-            href={p.link}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-xs text-cyan-300 hover:underline"
-          >
-            Open →
-          </a>
-        )}
+        <div className="flex items-center gap-4">
+          {p.github && (
+            <a
+              href={p.github}
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-xs text-zinc-400 hover:text-cyan-300 hover:underline transition-colors"
+            >
+              Code →
+            </a>
+          )}
+          {p.link && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="font-mono text-xs text-cyan-300 hover:underline"
+            >
+              Open →
+            </a>
+          )}
+        </div>
       </div>
     </motion.article>
   );

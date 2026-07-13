@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 type Props = {
   id: string;
   eyebrow: string;
-  title: string;
+  title?: string;
   children: ReactNode;
 };
 
@@ -24,9 +24,11 @@ export default function Section({ id, eyebrow, title, children }: Props) {
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-300/90">
             {eyebrow}
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
-            {title}
-          </h2>
+          {title && (
+            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
+              {title}
+            </h2>
+          )}
           <div className="mt-4 h-px w-24 bg-gradient-accent" />
         </motion.div>
         {children}

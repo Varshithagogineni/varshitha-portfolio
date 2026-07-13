@@ -130,7 +130,7 @@ export default function Contact() {
             </a>
           </div>
           <p className="font-mono text-xs text-zinc-500">
-            Based in Denton, TX · open to remote / hybrid.
+            Based in Dallas, TX · open to remote / hybrid.
           </p>
         </motion.div>
 
