@@ -17,6 +17,28 @@ type Project = {
 
 const aiProjects: Project[] = [
   {
+    name: "Home Operator — Hands-Free Repair Voice Agent",
+    tag: "Voice AI · MCP on AWS AgentCore",
+    description:
+      "Alexa+ style voice add-on built for Amazon's Build, Ship, Shape hackathon — a self-hosted MCP server (spec 2025-11-25) on Amazon Bedrock AgentCore Runtime that talks you through appliance repairs step by step, hands-free, with every instruction served verbatim from the manufacturer's own manual so the model can never invent a repair step.",
+    bullets: [
+      "Engineered code-enforced voice safety: a power-off safety gate that clears only on the user's own words, checked server-side — measured over 43 live voice conversations, the gate held 30/30 attempts to skip it, opened 10/10 when confirmed, and every repair line was spoken word-for-word in 40/40 completed runs.",
+      "Built the real-time lane on Amazon Nova 2 Sonic (speech-to-speech) behind a custom relay that constrains tool calls, with 8 MCP tools (~2 ms each) secured by Cognito JWT auth on AgentCore — plus live recall checks against the US CPSC government API and DynamoDB-persisted household state.",
+      "Designed an offline pipeline turning manual PDFs into structured, human-reviewed repair data (46 page-cited corrections across 5 appliances), and open-sourced cpsc-recall-check — an MIT-licensed Python library with 21 tests against real recall records.",
+    ],
+    stack: [
+      "Amazon Nova 2 Sonic",
+      "Bedrock AgentCore",
+      "MCP",
+      "Python",
+      "Cognito",
+      "DynamoDB",
+    ],
+    metric: "safety gate · 40/40 verbatim runs",
+    link: "https://d6zzi2o2me078.cloudfront.net/?code=9bad96-b7c7a5",
+    github: "https://github.com/Varshithagogineni/home-operator",
+  },
+  {
     name: "RoleReady — AI Job-Application Copilot",
     tag: "AI Copilot · LangChain + Tavily",
     description:
