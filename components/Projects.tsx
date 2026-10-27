@@ -120,12 +120,31 @@ const dataProjects: Project[] = [
   },
 ];
 
+const realtimeProjects: Project[] = [
+  {
+    name: "Rumble Reef — Real-Time Multiplayer Brawler",
+    tag: "WebRTC · Three.js · Serverless Netcode",
+    description:
+      "Browser-based multiplayer brawler for up to 6 players with three Brawl Stars-style modes — friends join from any phone or laptop with a 4-letter room code, no login, no install. Runs with zero game servers, entirely on free tiers.",
+    bullets: [
+      "Architected serverless netcode: the host's browser runs the authoritative simulation at 30 ticks/s in a Web Worker while peers connect over WebRTC data channels (an unreliable lane for snapshots and inputs, a reliable lane for events), with Supabase Realtime used only for the handshake and a 15 Hz relay fallback.",
+      "Implemented competitive-grade lag compensation — local prediction with reconciliation, remote players interpolated 80 ms in the past, shots fast-forwarded by measured latency, and host-side visibility culling so players hidden in bushes are never even sent to opponents.",
+      "Built a code-only art pipeline: Blender Python scripts generate and export every model as glTF, rendered live in Three.js with soft shadows, animated water caustics and poison gas — with a 2D sprite fallback for devices without WebGL.",
+    ],
+    stack: ["WebRTC", "Three.js", "JavaScript", "Supabase", "Blender", "Vercel"],
+    metric: "6 players · 30 tick/s · $0 infra",
+    link: "https://rumblereef.vercel.app",
+    github: "https://github.com/Varshithagogineni/bushwhack",
+  },
+];
+
 export default function Projects() {
   return (
     <Section id="projects" eyebrow="03 / projects">
       <div className="space-y-14">
         <ProjectGroup label="AI Engineering" projects={aiProjects} />
         <ProjectGroup label="Data Engineering" projects={dataProjects} />
+        <ProjectGroup label="Full-Stack & Real-Time" projects={realtimeProjects} />
       </div>
     </Section>
   );
